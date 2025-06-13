@@ -1,0 +1,37 @@
+<config
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns='http://www.ehcache.org/v3'
+        xsi:schemaLocation="
+        http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.0.xsd">
+
+    <!--    <cache alias="ready-cache">-->
+    <!--        <key-type>java.lang.Long</key-type>-->
+    <!--        <value-type>com.tharindu.me.ee.bank.entity.User</value-type>-->
+    <!--        <heap unit="entries">100</heap>-->
+    <!--    </cache>-->
+    
+    <persistence directory="jta-bank-cache-data"/>
+<!--C:\Servers\glassfish7\glassfish\domains\domain1\config\jta-bank-cache-data (Finding Persistence directory-->
+    <cache alias="com.tharindu.me.ee.bank.entity.User" uses-template="default-cache"/>
+    <cache alias="com.tharindu.me.ee.bank.entity.Account" uses-template="default-cache"/>
+    <cache alias="account-cache" uses-template="default-cache"/>
+<!--    <cache alias="com.tharindu.me.ee.bank.entity.User">-->
+<!--        <expiry>-->
+<!--            <ttl unit="minutes">60</ttl>-->
+<!--            <tti unit="minutes">1</tti>-->
+<!--        </expiry>-->
+<!--        <resources>-->
+<!--            <heap unit="entries">100</heap>-->
+<!--            <disk unit="MB" persistent="true">50</disk>-->
+<!--        </resources>-->
+<!--    </cache>-->
+    <cache-template name="default-cache">
+        <expiry>
+            <ttl unit="minutes">60</ttl>
+        </expiry>
+        <resources>
+            <heap unit="entries">100</heap>
+            <disk unit="MB" persistent="true">50</disk>
+        </resources>
+    </cache-template>
+</config>
